@@ -1,0 +1,1 @@
+export const api = "http://homelib.gal1.ru/api";
