@@ -19,7 +19,7 @@ export const UpdateCategory = async (id,data) => await axios.post(
     { headers:{Authorization: Cookies.get("JWT_TOKEN")} }
     )
 
-export const RemoveCategory = async (id) => await axios.delete( 
+export const DeleteCategory = async (id) => await axios.delete( 
     api+"/categories/delete/"+id, 
     { headers:{Authorization: Cookies.get("JWT_TOKEN")} }
 )

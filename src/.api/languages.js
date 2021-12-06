@@ -19,7 +19,7 @@ export const UpdateLanguage = async (id,data) => await axios.post(
     { headers:{Authorization: Cookies.get("JWT_TOKEN")} }
     )
 
-export const RemoveLanguage = async (id) => await axios.delete( 
+export const DeleteLanguage = async (id) => await axios.delete( 
     api+"/languages/delete/"+id, 
     { headers:{Authorization: Cookies.get("JWT_TOKEN")} }
 )

@@ -14,6 +14,7 @@ const ModalBook = ({
   updateParam,
   save,
   create,
+  remove,
 
   data,
   data: {
@@ -182,6 +183,10 @@ const ModalBook = ({
           </Row>
         </Modal.Body>
         <Modal.Footer>
+          {id && <Button variant="danger" onClick={()=>{remove(id); closeModal()}} className="me-auto">
+            Удалить
+          </Button>}
+          
           <Button variant="secondary" onClick={closeModal}>
             Отмена
           </Button>

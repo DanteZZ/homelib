@@ -1,6 +1,7 @@
-import { UpdateModalBookShow } from "../../../.store/modals/actions/updateModalBookShow"
-import { UpdateModalBookParam } from "../../../.store/modals/actions/updateModalBookParam"
+import { UpdateModalBookShow } from "../../../.store/modals/actions/books/updateModalBookShow"
+import { UpdateModalBookParam } from "../../../.store/modals/actions/books/updateModalBookParam"
 import { SaveBook } from "../../../.store/main/actions/books/saveBook.js"
+import { RemoveBook } from "../../../.store/main/actions/books/removeBook.js"
 
 const dispatcher = dispatch => ({
     updateParam: (param,value) => {
@@ -14,6 +15,9 @@ const dispatcher = dispatch => ({
     },
     create: (data) => {
         dispatch(SaveBook(data,true))
+    },
+    remove: (id) => {
+        dispatch(RemoveBook(id))
     }
 })
 
