@@ -16,10 +16,7 @@ const ModalCategory = ({
   remove,
 
   data,
-  data: {
-    id,
-    name,
-  },
+  data: { id, name },
   status,
   open,
   loading,
@@ -29,13 +26,14 @@ const ModalCategory = ({
       <Modal
         show={open}
         onHide={closeModal}
-        size="xl"
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
         <Modal.Header closeButton>
           <Modal.Title className="htext">
-            {status === MODAL_EDIT ? "Редактирование категории" : "Создание категории"}
+            {status === MODAL_EDIT
+              ? "Редактирование категории"
+              : "Создание категории"}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -51,10 +49,19 @@ const ModalCategory = ({
           </Row>
         </Modal.Body>
         <Modal.Footer>
-          {id && <Button variant="danger" onClick={()=>{remove(id); closeModal()}} className="me-auto">
-            Удалить
-          </Button>}
-          
+          {id && (
+            <Button
+              variant="danger"
+              onClick={() => {
+                remove(id);
+                closeModal();
+              }}
+              className="me-auto"
+            >
+              Удалить
+            </Button>
+          )}
+
           <Button variant="secondary" onClick={closeModal}>
             Отмена
           </Button>

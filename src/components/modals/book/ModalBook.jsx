@@ -1,11 +1,13 @@
-import React from "react";
-import { Row, Card, Col, Modal, Button, Form } from "react-bootstrap";
+import React, { useMemo } from "react";
+import { Row, Image, Col, Modal, Button, Form } from "react-bootstrap";
 import ReactStars from "react-rating-stars-component";
 import Editable from "../components/Editable/Editable.jsx";
 
 import { connect } from "react-redux";
 import connector from "./connect.js";
 import dispatcher from "./dispatch.js";
+
+import flags from "../../../.common/country.json";
 
 import { MODAL_EDIT } from "../../../.store/modals/actions/constants.js";
 
@@ -45,6 +47,15 @@ const ModalBook = ({
   categories,
   covers,
 }) => {
+  const flagsById = useMemo(() => {
+    const res = {};
+    for (let k in flags) {
+      const f = flags[k];
+      res[f.id] = f;
+    }
+    return res;
+  }, [flags]);
+
   return !open ? null : (
     <>
       <Modal
@@ -126,6 +137,14 @@ const ModalBook = ({
                     label="Издательство"
                     options={publishers}
                     onChange={(v) => updateParam("publisher", v)}
+                    optionWrapper={(i) => (
+                      <>
+                        {i?.image && (
+                          <Image src={i?.image} style={{ height: "18px" }} />
+                        )}{" "}
+                        {i?.name}
+                      </>
+                    )}
                   />
                   <Editable.Field
                     value={year}
@@ -156,6 +175,15 @@ const ModalBook = ({
                     label="Язык"
                     options={languages}
                     onChange={(v) => updateParam("language", v)}
+                    optionWrapper={(i) => (
+                      <>
+                        <Image
+                          src={flagsById?.[i?.icon].flag}
+                          style={{ width: "18px" }}
+                        />{" "}
+                        {i?.name}
+                      </>
+                    )}
                   />
                   <Editable.Field
                     value={buy_date}
@@ -183,10 +211,19 @@ const ModalBook = ({
           </Row>
         </Modal.Body>
         <Modal.Footer>
-          {id && <Button variant="danger" onClick={()=>{remove(id); closeModal()}} className="me-auto">
-            Удалить
-          </Button>}
-          
+          {id && (
+            <Button
+              variant="danger"
+              onClick={() => {
+                remove(id);
+                closeModal();
+              }}
+              className="me-auto"
+            >
+              Удалить
+            </Button>
+          )}
+
           <Button variant="secondary" onClick={closeModal}>
             Отмена
           </Button>
