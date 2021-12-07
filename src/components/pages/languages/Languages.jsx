@@ -56,7 +56,7 @@ const Languages = ({ openLanguage, createLanguage, languages, books }) => {
                 style={{ width: "18px" }}
               />
               {"  "}
-              {item.name}
+              {item.name || "Без названия"}
             </div>
             <Badge variant="primary" pill>
               {item.count} книг

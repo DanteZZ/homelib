@@ -29,7 +29,7 @@ const Covers = ({ openCover, createCover, covers, books }) => {
         <ListGroup.Item onClick={()=>createCover()} className="bg-primary active cursor-pointer" ><Fa icon={faPlusCircle}/> Добавить переплёт</ListGroup.Item>
         {sortedCovers.map((item) => (
           <ListGroup.Item className="d-flex justify-content-between align-items-start cursor-pointer" key={item.id} onClick={() => openCover(item)}>
-            {item.name}
+            {item.name || "Без названия"}
             <Badge variant="primary" pill>{item.count} книг</Badge>
           </ListGroup.Item>
         ))}

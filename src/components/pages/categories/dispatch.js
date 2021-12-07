@@ -7,8 +7,8 @@ const dispatcher = dispatch => ({
         dispatch(UpdateModalCategory(MODAL_EDIT, data))
         dispatch(UpdateModalCategoryShow(true))
     },
-    createCategory: () => {
-        dispatch(UpdateModalCategory(MODAL_CREATE))
+    createCategory: (parent) => {
+        dispatch(UpdateModalCategory(MODAL_CREATE, parent ? {parent} : {}))
         dispatch(UpdateModalCategoryShow(true))
     }
 })

@@ -19,6 +19,8 @@ export default {
             category: null,
             rate: null,
             readed: null,
+            read_date: null,
+            serie: null,
             ordered: null,
             handovered: null,
         }
@@ -30,6 +32,7 @@ export default {
         data: {
             id: null,
             name: null,
+            parent: null
         }
     },
     cover: {

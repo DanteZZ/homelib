@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Row, Col, Modal, Button } from "react-bootstrap";
 import Editable from "../components/Editable/Editable.jsx";
 
@@ -16,11 +16,13 @@ const ModalCategory = ({
   remove,
 
   data,
-  data: { id, name },
+  data: { id, name, parent },
+  categories,
   status,
   open,
   loading,
 }) => {
+  const filteredCategories = useMemo(()=>categories.filter(i=>!i.parent && i.id != id),[categories]);
   return !open ? null : (
     <>
       <Modal
@@ -44,6 +46,13 @@ const ModalCategory = ({
                 placeholder="Введите название категории"
                 label="Название категории"
                 onChange={(v) => updateParam("name", v)}
+              />
+              <Editable.Select
+                value={parent}
+                placeholder="-"
+                label="Родительский жанр"
+                options={filteredCategories}
+                onChange={(v) => updateParam("parent", v)}
               />
             </Col>
           </Row>

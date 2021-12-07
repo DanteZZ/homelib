@@ -37,6 +37,8 @@ const ModalBook = ({
     readed,
     ordered,
     handovered,
+    serie,
+    read_date
   },
   status,
   open,
@@ -105,6 +107,15 @@ const ModalBook = ({
                     updateParam("readed", checked)
                   }
                 />
+                {readed && 
+                  <Editable.Field
+                    value={read_date}
+                    placeholder="-"
+                    placeholder="Укажите дату прочтения"
+                    type="date"
+                    onChange={(v) => updateParam("read_date", v)}
+                  />
+                }
               </div>
             </Col>
             <Col>
@@ -124,7 +135,7 @@ const ModalBook = ({
                     label="Автор"
                     onChange={(v) => updateParam("author", v)}
                   />
-                  <Editable.Select
+                  <Editable.NestedSelect
                     value={category}
                     placeholder="Выберите жанр"
                     label="Жанр"
@@ -169,6 +180,12 @@ const ModalBook = ({
                   />
                 </Col>
                 <Col>
+                  <Editable.Field
+                    value={serie}
+                    placeholder="-"
+                    label="Серия"
+                    onChange={(v) => updateParam("serie", v)}
+                  />
                   <Editable.Select
                     value={language}
                     placeholder="Выберите язык"
