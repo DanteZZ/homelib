@@ -15,6 +15,9 @@ import { SET_MODAL_PUBLISHER_SHOW, MutateModalPublisherShow } from './actions/pu
 import { SET_MODAL_LANGUAGE, MutateModalLanguage } from './actions/languages/setters/setModalLanguage'
 import { SET_MODAL_LANGUAGE_SHOW, MutateModalLanguageShow } from './actions/languages/setters/setModalLanguageShow'
 
+import { SET_MODAL_EXTERNAL, MutateModalExternal } from './actions/external/setters/setModalExternal'
+import { SET_MODAL_EXTERNAL_SHOW, MutateModalExternalShow } from './actions/external/setters/setModalExternalShow'
+
 export default function Reducer(state = DefaultState, { type, payload }) {
     switch (type) {
         case SET_MODAL_BOOK:
@@ -41,6 +44,11 @@ export default function Reducer(state = DefaultState, { type, payload }) {
             return MutateModalLanguage(state, payload);
         case SET_MODAL_LANGUAGE_SHOW:
             return MutateModalLanguageShow(state, payload);
+
+        case SET_MODAL_EXTERNAL:
+            return MutateModalExternal(state, payload);
+        case SET_MODAL_EXTERNAL_SHOW:
+            return MutateModalExternalShow(state, payload);
 
         default:
             return state

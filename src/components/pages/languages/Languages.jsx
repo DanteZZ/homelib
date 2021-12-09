@@ -52,7 +52,7 @@ const Languages = ({ openLanguage, createLanguage, languages, books }) => {
           >
             <div>
               <Image
-                src={flagsById[item?.icon].flag}
+                src={flagsById?.[item?.icon]?.flag}
                 style={{ width: "18px" }}
               />
               {"  "}

@@ -22,6 +22,8 @@ import ModalCover from "../modals/cover/ModalCover.jsx";
 import ModalPublisher from "../modals/publisher/ModalPublisher.jsx";
 import ModalLanguage from "../modals/language/ModalLanguage.jsx";
 
+import ModalExternal from "../modals/external/ModalExternal.jsx";
+
 const Main = ({ isAuth, isLoaded, checkIsAuth }) => {
   useEffect(() => {
     checkIsAuth();
@@ -53,6 +55,7 @@ const Main = ({ isAuth, isLoaded, checkIsAuth }) => {
       <ModalCover />
       <ModalPublisher />
       <ModalLanguage />
+      <ModalExternal />
     </>
   ) : (
     <>

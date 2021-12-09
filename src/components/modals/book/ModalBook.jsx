@@ -14,6 +14,7 @@ import { MODAL_EDIT } from "../../../.store/modals/actions/constants.js";
 const ModalBook = ({
   closeModal,
   updateParam,
+  openExternal,
   save,
   create,
   remove,
@@ -229,17 +230,27 @@ const ModalBook = ({
         </Modal.Body>
         <Modal.Footer>
           {id && (
-            <Button
-              variant="danger"
-              onClick={() => {
-                remove(id);
-                closeModal();
-              }}
-              className="me-auto"
-            >
-              Удалить
-            </Button>
+            <>
+              <Button
+                variant="danger"
+                onClick={() => {
+                  remove(id);
+                  closeModal();
+                }}
+              >
+                Удалить
+              </Button>
+            </>
           )}
+          <Button
+            variant="info"
+            onClick={() => {
+              openExternal();
+            }}
+            className="me-auto ml-3"
+          >
+            Поиск по базе
+          </Button>
 
           <Button variant="secondary" onClick={closeModal}>
             Отмена

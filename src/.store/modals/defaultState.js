@@ -97,5 +97,10 @@ export default {
             fact_date: null,
             handovered: null
         }
+    },
+    external: {
+        open: false,
+        loading: false,
+        list:[]
     }
 }
