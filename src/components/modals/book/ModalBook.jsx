@@ -39,7 +39,7 @@ const ModalBook = ({
     ordered,
     handovered,
     serie,
-    read_date
+    read_date,
   },
   status,
   open,
@@ -108,15 +108,14 @@ const ModalBook = ({
                     updateParam("readed", checked)
                   }
                 />
-                {readed && 
+                {readed && (
                   <Editable.Field
                     value={read_date}
-                    placeholder="-"
                     placeholder="Укажите дату прочтения"
                     type="date"
                     onChange={(v) => updateParam("read_date", v)}
                   />
-                }
+                )}
               </div>
             </Col>
             <Col>
@@ -196,7 +195,7 @@ const ModalBook = ({
                     optionWrapper={(i) => (
                       <>
                         <Image
-                          src={flagsById?.[i?.icon].flag}
+                          src={flagsById?.[i?.icon]?.flag}
                           style={{ width: "18px" }}
                         />{" "}
                         {i?.name}

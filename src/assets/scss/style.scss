@@ -57,7 +57,7 @@
   transition: .3s;
   cursor: pointer;
   margin-top: 8px;
-  height: 361px;
+  height: 425px;
   border: 3px dashed #efefef;
   color: #a2a2a2;
   &:hover {
@@ -79,7 +79,7 @@
   transition:.3s;
   cursor:pointer;
   margin-top:8px;
-  height:361px;
+  height:425px;
   &:hover {
     box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.15);
     margin-top:0px;
@@ -148,9 +148,9 @@ label.image-select {
 }
 
 .library-book-img {
-  padding: 8px;
-  height: 260px;
-  object-fit: contain;
+  width: 100%;
+  object-fit: cover;
+  height: 327px;
 }
 
 .sidebar-item {
@@ -160,7 +160,7 @@ label.image-select {
   }
 }
 
-#sidebar {
+#sidebar, .offcanvas-nav {
   background-color: rgba(248, 249, 250, 0.7);
   .nav-link {
     color: theme-color("secondary");
@@ -170,6 +170,10 @@ label.image-select {
     }
   }
 }
+.offcanvas-nav {
+  background-color: rgba(248, 249, 250, 1);
+  border:none;
+}
 
 .external-product {
   transition:.2s;
@@ -177,4 +181,15 @@ label.image-select {
   &:hover {
     background-color:rgba(0,0,0,0.05);
   }
+}
+
+.book-title {
+  display: -webkit-box;
+  max-width: 400px;
+  height: 32px;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1;
 }

@@ -43,12 +43,15 @@ const ImageFile = ({ value, onChange, label, emptySrc }) => {
     <div className="mb-1">
       {label && <strong className="d-block">{label}</strong>}
       {!editing && (
-        <Card className="p-3">
+        <Card className="">
           <Image src={val || emptySrc || empty_book} />
         </Card>
       )}
       {!editing && (
-        <div className="text-end c-gray" onClick={() => setEditing(true)}>
+        <div
+          className="text-end c-gray cursor-pointer"
+          onClick={() => setEditing(true)}
+        >
           <small>изменить </small>
           <Fa className="field-edit" icon={faEdit} />
         </div>

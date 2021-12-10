@@ -16,9 +16,8 @@ const Library = ({ openBook, createBook, books }) => {
     <>
       <h3 className="htext p-0 pt-3">Моя библиотека</h3>
       <Row className="">
-
-        <Col xl={2} lg={4} md={4} xs={6} sm={6} >
-          <Card className="book-card-add" onClick={()=>createBook()}>
+        <Col xl={2} lg={4} md={4} xs={6} sm={6}>
+          <Card className="book-card-add" onClick={() => createBook()}>
             <Card.Body>
               <Fa icon={faPlusCircle} size="2x" />
               Добавить книгу
@@ -27,15 +26,17 @@ const Library = ({ openBook, createBook, books }) => {
         </Col>
 
         {sortedBooks.map((book) => (
-          <Col key={book.id} xl={2} lg={4} md={4} xs={6} sm={6} >
-            <Card className="pt-3 book-card" onClick={() => openBook(book)}>
+          <Col key={book.id} xl={2} lg={4} md={4} xs={6} sm={6}>
+            <Card className="book-card" onClick={() => openBook(book)}>
               <Card.Img
                 variant="top"
                 src={book.image || empty_book}
                 className="library-book-img"
               />
               <Card.Body>
-                <Card.Title className="h6">{book.name || "Без названия"}</Card.Title>
+                <Card.Title className="h6 book-title">
+                  {book.name || "Без названия"}
+                </Card.Title>
                 <Card.Text>
                   <small>{book.author || "Автор не указан"}</small>
                 </Card.Text>
