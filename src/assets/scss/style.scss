@@ -147,6 +147,15 @@ label.image-select {
   }
 }
 
+.filter-icon {
+  color:rgba(0, 0, 0, 0.5);
+  transition:0.2s;
+  cursor:pointer;
+  &:hover, &.active {
+    color: theme-color("primary");
+  }
+}
+
 .library-book-img {
   width: 100%;
   object-fit: cover;

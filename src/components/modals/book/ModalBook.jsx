@@ -49,6 +49,9 @@ const ModalBook = ({
   languages,
   categories,
   covers,
+
+  authors,
+  series
 }) => {
   const flagsById = useMemo(() => {
     const res = {};
@@ -129,10 +132,11 @@ const ModalBook = ({
               </Row>
               <Row>
                 <Col>
-                  <Editable.Field
+                  <Editable.CreatableSelect
                     value={author}
                     placeholder="Введите автора"
                     label="Автор"
+                    options={authors}
                     onChange={(v) => updateParam("author", v)}
                   />
                   <Editable.NestedSelect
@@ -180,10 +184,10 @@ const ModalBook = ({
                   />
                 </Col>
                 <Col>
-                  <Editable.Field
+                  <Editable.CreatableSelect
                     value={serie}
-                    placeholder="-"
                     label="Серия"
+                    options={series}
                     onChange={(v) => updateParam("serie", v)}
                   />
                   <Editable.Select

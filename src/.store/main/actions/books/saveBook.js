@@ -1,6 +1,7 @@
 import { UpdateBook, CreateBook } from "../../../../.api/books";
 import { SetBookList } from "./setters/setBookList";
 import { UpdateLoaded } from "./../updateLoaded"
+import { updateAddictions } from "../updateAddictions";
 
 export const SaveBook = (newData, create=false) => async (dispatch, getState) => {
     const {
@@ -19,6 +20,7 @@ export const SaveBook = (newData, create=false) => async (dispatch, getState) =>
         const { data } = await UpdateBook(newData.id,newData);
         newBooks = books.map(i => i.id == newData.id ? data : i );
     };
-    dispatch(SetBookList(newBooks))
+    dispatch(SetBookList(newBooks));
+    dispatch(updateAddictions())
     dispatch(UpdateLoaded(true))
 }

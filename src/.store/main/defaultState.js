@@ -7,4 +7,8 @@ export default {
     friends:[],
     languages:[],
     publishers:[],
+    addictions:{
+        authors:[],
+        series:[]
+    },
 }

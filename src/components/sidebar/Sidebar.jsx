@@ -59,7 +59,7 @@ const Sidebar = ({ offcanvas, closeOffcanvas }) => {
         style={{ width: "100px" }}
         className="pt-3 d-lg-block d-md-none d-sm-none d-none"
       >
-        <Nav activeKey={location.pathname} className="flex-column">
+        <Nav activeKey={location.pathname} className="flex-column" style={{position:"fixed"}}>
           {navs.map((i, k) => (
             <Nav.Link
               key={k}
