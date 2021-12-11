@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { Row, Card, Col, Form, Button } from "react-bootstrap";
+import { Row, Card, Col, Form, Button, Badge } from "react-bootstrap";
 
 import { FontAwesomeIcon as Fa } from "@fortawesome/react-fontawesome";
 import { faPlusCircle, faFilter, faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -76,10 +76,17 @@ const Library = ({
     <>
       <Row>
         <Col xl="8" lg="6" md="12">
-        <h3 className="htext p-0 pt-3">
+        <h3 className="htext p-0 pt-3 d-flex align-items-center">
+          <Badge style={{fontSize:"0.5em"}} className="me-2">
+            {
+              search || filter ? sortedBooks.length+" / "+books.length : sortedBooks.length
+            }
+            {' '}книг
+          </Badge>
+          {' '}
           Моя библиотека
           {' '}
-          <Fa icon={faFilter} onClick={()=>{setFilter(!filter); setSearch("")}} size="xs" className={`filter-icon ${filter ? "active" : ""}`} />
+          <Fa icon={faFilter} onClick={()=>{setFilter(!filter); setSearch("")}} size="xs" className={`ms-2 filter-icon ${filter ? "active" : ""}`} />
         </h3>
         </Col>
         <Col xl="4" lg="6" md="12" className="justify-content-end mt-3">
