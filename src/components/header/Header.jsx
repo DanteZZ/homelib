@@ -22,7 +22,7 @@ const Header = ({ logout, openOffcanvas, user: { name, avatar } }) => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse className="justify-content-end">
         <Image src={avatar || empty_avatar} className="avatar" roundedCircle />
-        <NavDropdown title={name}>
+        <NavDropdown title={name} className="d-inline-block">
           <NavDropdown.Item onClick={logout}>Выйти</NavDropdown.Item>
         </NavDropdown>
       </Navbar.Collapse>

@@ -40,6 +40,13 @@ const Main = ({ isAuth, isLoaded, checkIsAuth }) => {
             <div className="p-3 pt-0">
               <Routes>
                 <Route exact path="/" element={<Library />} />
+                <Route exact path="/unhaul" element={
+                  <Library
+                    unhaul
+                    customHead="Unhaul"
+                    useFilter={false}
+                  />
+                } />
                 <Route exact path="/categories" element={<Categories />} />
                 <Route exact path="/covers" element={<Covers />} />
                 <Route exact path="/publishers" element={<Publishers />} />

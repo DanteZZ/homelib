@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Row, Image, Col, Modal, Button, Form } from "react-bootstrap";
+import { Row, Image, Col, Modal, Button, Form, Badge } from "react-bootstrap";
 import ReactStars from "react-rating-stars-component";
 import Editable from "../components/Editable/Editable.jsx";
 
@@ -10,6 +10,10 @@ import dispatcher from "./dispatch.js";
 import flags from "../../../.common/country.json";
 
 import { MODAL_EDIT } from "../../../.store/modals/actions/constants.js";
+import moment from "moment";
+
+import { FontAwesomeIcon as Fa } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const ModalBook = ({
   closeModal,
@@ -35,11 +39,12 @@ const ModalBook = ({
     cover,
     category,
     rate,
-    readed,
+    reading,
     ordered,
     handovered,
     serie,
-    read_date,
+    unhauled,
+    read_dates,
   },
   status,
   open,
@@ -61,6 +66,14 @@ const ModalBook = ({
     }
     return res;
   }, [flags]);
+
+  const getStatus = () => {
+    if (ordered) {return "В пути"}
+    if (reading?.status) {return "В процессе прочтения"}
+    if (handovered) {return "Отдано"}
+    if (unhauled) {return "Unhaul"}
+    return "В библиотеке";
+  }
 
   return !open ? null : (
     <>
@@ -99,26 +112,18 @@ const ModalBook = ({
               <div>
                 <strong>Статус</strong>
                 <br />
-                {ordered ? "Заказан" : handovered ? "Отдано" : "В библиотеке"}
+                {getStatus()}
               </div>
               <div>
-                <strong className="me-2">Прочитано</strong>
                 <Form.Check
                   type="checkbox"
-                  className="d-inline"
-                  checked={readed}
+                  className="d-inline "
+                  checked={ordered}
                   onChange={({ target: { checked } }) =>
-                    updateParam("readed", checked)
+                    updateParam("ordered", checked)
                   }
                 />
-                {readed && (
-                  <Editable.Field
-                    value={read_date}
-                    placeholder="Укажите дату прочтения"
-                    type="date"
-                    onChange={(v) => updateParam("read_date", v)}
-                  />
-                )}
+                <strong className="ms-2">В пути</strong>  
               </div>
             </Col>
             <Col>
@@ -228,32 +233,114 @@ const ModalBook = ({
                   />
                 </Col>
               </Row>
+              <hr/>
+              <Row>
+                <Col lg="6" md="12">
+                  <Form.Check
+                    type="checkbox"
+                    className="d-inline"
+                    checked={reading?.status}
+                    onChange={({ target: { checked } }) => {
+                        updateParam("reading", {start:moment().format("YYYY-MM-DD"),end:null,page:null,status:checked})
+                      } 
+                    }
+                  />
+                  <strong className="ms-2">Читаю сейчас</strong>
+
+                  {reading?.status && <>
+                    <Editable.Field
+                      value={reading?.start || null}
+                      placeholder="-"
+                      label="Дата начала"
+                      type="date"
+                      onChange={(v) => updateParam("reading", {...reading,start:v})}
+                    />
+                    <Editable.Field
+                      value={reading?.page || null}
+                      placeholder="-"
+                      label="Страница"
+                      type="number"
+                      onChange={(v) => updateParam("reading", {...reading,page:v})}
+                    />
+                    <Editable.Field
+                      value={reading?.end || null}
+                      placeholder="-"
+                      label="Дата окончания"
+                      type="date"
+                      onChange={(v) => updateParam("reading", {...reading,end:v})}
+                    />
+                    <Button 
+                      variant="success" 
+                      className="btn-sm"
+                      type="submit"
+                      onClick={()=>{
+                        const res = {start:reading.start,end:reading.end}
+                        if (!res.end) {res.end = moment().format("YYYY-MM-DD");}
+                        updateParam("read_dates", [...read_dates,res]);
+                        updateParam("reading", {start:null, end:null, status:false, page:null})
+                      }}
+                    >
+                      Завершить чтение
+                    </Button>
+                  </>}
+                </Col>
+                <Col lg="6" md="12">
+                  <strong>Даты прочтения <Badge>{read_dates.length}</Badge></strong><br/>
+                  {read_dates.length > 0 ? 
+                  read_dates.map((i,k)=><p key={k} className="m-0">{i.start} — {i.end} 
+                    <Fa icon={faTimes} className="cursor-pointer ms-1 text-secondary" onClick={() =>
+                      updateParam("read_dates", read_dates.filter((d,dk)=>dk !== k))
+                    }/>
+                  </p>)
+                  : "Вы ещё не читали эту книгу"}
+                </Col>
+              </Row>
             </Col>
           </Row>
         </Modal.Body>
         <Modal.Footer>
-          {id && (
-            <>
-              <Button
-                variant="danger"
-                onClick={() => {
-                  remove(id);
-                  closeModal();
-                }}
-              >
-                Удалить
-              </Button>
-            </>
-          )}
           <Button
             variant="info"
             onClick={() => {
               openExternal();
             }}
-            className="me-auto ml-3"
           >
             Поиск по базе
           </Button>
+          {
+            status == MODAL_EDIT &&
+            <Button
+              variant="secondary"
+              onClick={() => {
+                if (window.confirm(!unhauled ? "Перенести в unhaul?" : "Убрать из unhaul?")) {
+                  if (unhauled) {
+                    save({...data,unhauled:null});
+                  } else {
+                    save({...data,unhauled:true});
+                  }
+                  closeModal();
+                }
+              }}
+              >
+              {unhauled && "Убрать из "} Unhaul
+            </Button>
+          }
+          {id && (
+            <>
+              <Button
+                variant="danger"
+                onClick={() => {
+                  if (window.confirm("Вы уверенны что хотите удалить книгу?")) {
+                    remove(id);
+                    closeModal();
+                  }
+                }}
+                className="me-auto ml-3"
+              >
+                Удалить
+              </Button>
+            </>
+          )}
 
           <Button variant="secondary" onClick={closeModal}>
             Отмена

@@ -1,6 +1,6 @@
 const connector = ({ main: { books, categories, publishers, addictions:{series,authors} } }) => 
     ({
-        books,
+        allbooks: books,
         categories,
         publishers,
         series,

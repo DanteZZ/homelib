@@ -7,6 +7,7 @@ import {
   faNewspaper,
   faBookOpen,
   faLanguage,
+  faBookDead,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { Link, useLocation } from "react-router-dom";
@@ -20,6 +21,7 @@ const Sidebar = ({ offcanvas, closeOffcanvas }) => {
 
   const navs = [
     { to: "/", title: "Библиотека", icon: faBook },
+    { to: "/unhaul", title: "Unhaul", icon: faBookDead },
     { to: "/categories", title: "Жанры", icon: faTheaterMasks },
     { to: "/publishers", title: "Издатели", icon: faNewspaper },
     { to: "/covers", title: "Переплёты", icon: faBookOpen },

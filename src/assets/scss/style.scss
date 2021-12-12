@@ -202,3 +202,14 @@ label.image-select {
   text-overflow: ellipsis;
   line-height: 1;
 }
+
+.book-author {
+  display: -webkit-box;
+  max-width: 400px;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1;
+  padding-top:10px;
+}
