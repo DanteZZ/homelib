@@ -5,12 +5,12 @@
     display: flex;
     align-items:center;
     &__image {
-        background-color: theme-color("primary");
+        background: linear-gradient(180deg, #FF9339 0%, #FD7E14 100%);
         border-radius:6px;
         width:36px;
         height:36px;
         margin-right:.8em;
-        padding:5px;
+        padding:2px;
     }
 }
 
