@@ -1,6 +1,6 @@
 {
-  "short_name": "homelib",
-  "name": "HomeLib - Домашняя библиотека",
+  "short_name": "HomeLib",
+  "name": "Ваша домашняя библиотека",
   "icons": [
     {
       "src": "favicon.ico",
@@ -19,7 +19,7 @@
     }
   ],
   "start_url": ".",
-  "display": "fullscreen",
+  "display": "standalone",
   "theme_color": "#fd9137",
   "background_color": "#ffffff"
 }
