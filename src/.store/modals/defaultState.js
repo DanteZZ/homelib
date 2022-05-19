@@ -18,7 +18,10 @@ export default {
             cover: null,
             category: null,
             rate: null,
-            readed: null,
+            reading: {start:null,end:null},
+            read_dates: [],
+            unhauled: null,
+            serie: null,
             ordered: null,
             handovered: null,
         }
@@ -30,6 +33,7 @@ export default {
         data: {
             id: null,
             name: null,
+            parent: null
         }
     },
     cover: {
@@ -94,5 +98,10 @@ export default {
             fact_date: null,
             handovered: null
         }
+    },
+    external: {
+        open: false,
+        loading: false,
+        list:[]
     }
 }

@@ -10,12 +10,11 @@ export const Login = (username, password) => async (dispatch) => {
         const {data:{result: { token }}} = await GenToken(data.salt);
         const bearer = Buffer(token+"/"+data.salt).toString('base64');
         
-        Cookies.set('JWT_TOKEN', "Bearer: "+bearer);
+        Cookies.set('JWT_TOKEN', "Bearer: "+bearer, { expires: 365 });
         dispatch(UpdateIsAuth(true));
         dispatch(UpdateUser(data));
         showMessage("Добро пожаловать!");
     } catch (e) {
-        console.log(e);
         e = e?.response?.data || e;
         const error = typeof e?.errors == "string" ? e?.errors : typeof e == "string" ? e : "Непредвиденная ошибка"
         showError("Ошибка авторизации:\n"+error)

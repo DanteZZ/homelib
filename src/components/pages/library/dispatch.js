@@ -1,5 +1,5 @@
-import { UpdateModalBookShow } from "../../../.store/modals/actions/updateModalBookShow"
-import { UpdateModalBook } from "../../../.store/modals/actions/updateModalBook"
+import { UpdateModalBookShow } from "../../../.store/modals/actions/books/updateModalBookShow"
+import { UpdateModalBook } from "../../../.store/modals/actions/books/updateModalBook"
 import { MODAL_CREATE, MODAL_EDIT } from "../../../.store/modals/actions/constants"
 
 const dispatcher = dispatch => ({

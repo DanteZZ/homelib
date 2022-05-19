@@ -19,7 +19,7 @@ export const UpdatePublisher = async (id,data) => await axios.post(
     { headers:{Authorization: Cookies.get("JWT_TOKEN")} }
     )
 
-export const RemovePublisher = async (id) => await axios.delete( 
+export const DeletePublisher = async (id) => await axios.delete( 
     api+"/publishers/delete/"+id, 
     { headers:{Authorization: Cookies.get("JWT_TOKEN")} }
 )

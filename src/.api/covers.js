@@ -19,7 +19,7 @@ export const UpdateCover = async (id,data) => await axios.post(
     { headers:{Authorization: Cookies.get("JWT_TOKEN")} }
     )
 
-export const RemoveCover = async (id) => await axios.delete( 
+export const DeleteCover = async (id) => await axios.delete( 
     api+"/covers/delete/"+id, 
     { headers:{Authorization: Cookies.get("JWT_TOKEN")} }
 )

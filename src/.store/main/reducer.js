@@ -1,6 +1,8 @@
 import DefaultState from './defaultState'
 
 import { SET_LOADED, MutateLoaded } from './actions/setters/setLoaded'
+import { SET_OFFCANVAS, MutateOffcanvas } from './actions/setters/setOffcanvas'
+import { SET_ADDICTIONS, MutateAddictions } from './actions/setters/setAddictions'
 
 import { SET_BOOK_LIST, MutateBookList } from './actions/books/setters/setBookList'
 import { SET_PUBLISHER_LIST, MutatePublisherList } from './actions/publishers/setters/setPublisherList'
@@ -12,6 +14,11 @@ export default function Reducer(state = DefaultState, { type, payload }) {
     switch (type) {
         case SET_LOADED:
             return MutateLoaded(state, payload)
+        case SET_OFFCANVAS:
+            return MutateOffcanvas(state, payload)
+        case SET_ADDICTIONS:
+            return MutateAddictions(state, payload)
+
         case SET_BOOK_LIST:
             return MutateBookList(state, payload)
         case SET_PUBLISHER_LIST:

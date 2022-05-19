@@ -1,5 +1,5 @@
 import { SetModalBook } from "./setters/setModalBook";
-import defaultState from "../defaultState";
+import defaultState from "../../defaultState";
 
 export const UpdateModalBook = (status,data={}) => async (dispatch, getState) => {
     const {

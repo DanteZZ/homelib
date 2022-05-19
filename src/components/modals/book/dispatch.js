@@ -1,6 +1,9 @@
-import { UpdateModalBookShow } from "../../../.store/modals/actions/updateModalBookShow"
-import { UpdateModalBookParam } from "../../../.store/modals/actions/updateModalBookParam"
+import { UpdateModalBookShow } from "../../../.store/modals/actions/books/updateModalBookShow"
+import { UpdateModalBookParam } from "../../../.store/modals/actions/books/updateModalBookParam"
 import { SaveBook } from "../../../.store/main/actions/books/saveBook.js"
+import { RemoveBook } from "../../../.store/main/actions/books/removeBook.js"
+
+import { UpdateModalExternalShow } from "../../../.store/modals/actions/external/updateModalExternalShow"
 
 const dispatcher = dispatch => ({
     updateParam: (param,value) => {
@@ -14,7 +17,11 @@ const dispatcher = dispatch => ({
     },
     create: (data) => {
         dispatch(SaveBook(data,true))
-    }
+    },
+    remove: (id) => {
+        dispatch(RemoveBook(id))
+    },
+    openExternal: () => dispatch(UpdateModalExternalShow(true))
 })
 
 export default dispatcher

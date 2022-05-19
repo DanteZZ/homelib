@@ -1,4 +1,4 @@
-const connector = ({ main: {publishers, languages, categories, covers}, modals: {book:{ status, open, loading, data }} }) => 
+const connector = ({ main: {publishers, languages, categories, covers, addictions:{authors,series}}, modals: {book:{ status, open, loading, data }} }) => 
     ({
         data,
         loading,
@@ -8,6 +8,9 @@ const connector = ({ main: {publishers, languages, categories, covers}, modals: 
         publishers,
         languages,
         categories,
-        covers
+        covers,
+        
+        authors,
+        series
     })
 export default connector
